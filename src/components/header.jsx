@@ -12,9 +12,9 @@ export default async function Header({ config }) {
 
             <nav style={{ background: config?.backgroundColorHeader }} className={`py-5 px-4 border shadow-sm`}>
 
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl ">
+                <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl gap-4 ">
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center justify-between flex-row w-full lg:w-auto gap-6">
 
                         <Logo
                             className={"w-36 h-8  "}
@@ -22,6 +22,8 @@ export default async function Header({ config }) {
                         />
 
                         <CategoriesButton CategoriesList={<CategoriesList />} />
+
+
 
 
                     </div>

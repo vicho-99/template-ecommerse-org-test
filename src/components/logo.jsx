@@ -1,14 +1,19 @@
+import Link from "next/link"
 
 export default function Logo({
     url,
     className
 }) {
     return (
-        <img
-            src={url}
-            alt="logo"
-            className={className}
-        />
+        <Link href={"/"} >
+            <img
+                src={url}
+
+                alt="logo"
+                className={className}
+            />
+        </Link>
+
     )
 
 }

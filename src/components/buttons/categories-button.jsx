@@ -25,15 +25,17 @@ export default function CategoriesButton({
                 toggleDrawerCategories={toggleDrawerCategories}
             />
 
-            <div className="flex flex-row gap-2.5 w-52 text-xs font-medium" >
+            <div className="flex flex-row gap-2.5  text-xs font-medium" >
 
                 <button className="bg-[#8cc63e] rounded-full p-1.5" onClick={toggleDrawerCategories}  >
 
                     <BarsIcon className={"w-6 h-6 text-white"} />
 
                 </button>
+                <div className="hidden lg:block" >
+                    <p> Menú de <br /> Categorías</p>
+                </div>
 
-                <p> Menú de <br /> Categorías</p>
 
             </div>
 
