@@ -1,8 +1,6 @@
 export default function Hero({ config }) {
 
-
     return (
-
 
         <div
             title="Smartyventa - Gestión inteligente de la experiencia de compra de tus clientes"
@@ -19,6 +17,7 @@ export default function Hero({ config }) {
                     py-12">
 
                 <div className="container mx-auto max-w-7xlxl px-3 py-12">
+
                     <div className="mx-auto text-left py-4 px-2">
 
                         <div className="flex flex-col gap-3 p-3" >
@@ -32,13 +31,14 @@ export default function Hero({ config }) {
                             </button>
 
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
-
         </div>
-
 
     )
 

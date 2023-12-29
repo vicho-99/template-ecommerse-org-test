@@ -32,7 +32,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/integrations/smarty-venta/products.js"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

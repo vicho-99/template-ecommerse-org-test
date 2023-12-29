@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import Drawer from 'react-modern-drawer'
 
 import 'react-modern-drawer/dist/index.css'
@@ -9,8 +12,13 @@ export default function DrawerCategories({
 
 }) {
 
+    const [load, setLoad] = useState();
+
+    useEffect(() => setLoad(true), [])
+
     return (
 
+        load &&
         <Drawer
             open={drawerCategoriesIsOpen}
             onClose={toggleDrawerCategories}

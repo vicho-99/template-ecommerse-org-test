@@ -4,7 +4,7 @@ export default function Footer({ config }) {
 
     return (
 
-        <footer className="bg-gray-50   bottom-0 w-full">
+        <footer className="bg-gray-50     bottom-0 w-full">
 
             <div className=" px-4 py-16 sm:px-6 lg:px-8">
 

@@ -6,7 +6,7 @@ export default function HeaderOptions() {
 
     return (
 
-        <div className="flex flex-row gap-6" >
+        <div className="flex flex-row gap-6  " >
 
             <SearchProductsForm />
 

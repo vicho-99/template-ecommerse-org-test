@@ -1,8 +1,11 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
+
 import Header from '@/src/components/header'
-import { getConfigs } from '@/src/services/configs'
 import Footer from '@/src/components/footer'
+import { ConfigContext } from '@/src/contexts/config-context'
+import { Inter } from 'next/font/google'
+import { getConfigs } from '@/src/services/configs'
+
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,13 +26,17 @@ export default async function RootLayout({ children }) {
 
       <body suppressHydrationWarning={true} className={inter.className}>
 
-        <Header config={config} />
+        <ConfigContext>
 
-        <div style={{ marginTop: 78 }} />
+          <Header config={config} />
 
-        {children}
+          <div style={{ marginTop: 78 }} />
 
-        <Footer config={config} />
+          {children}
+
+          <Footer config={config} />
+
+        </ConfigContext>
 
       </body>
 

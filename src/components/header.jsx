@@ -23,15 +23,11 @@ export default async function Header({ config }) {
 
                         <CategoriesButton CategoriesList={<CategoriesList />} />
 
-
-
-
                     </div>
 
-                    <div className="flex items-center lg:order-2">
+                    <div className="flex items-center lg:order-2 ">
 
                         <HeaderOptions />
-
 
                     </div>
 
