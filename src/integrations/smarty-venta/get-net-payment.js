@@ -1,20 +1,20 @@
 import axiosInstance from "@/src/config/axios-instance-smartyventa";
 
-export async function createOrder({ order }) {
+export default async function getNetPaymentValidation(key) {
 
     try {
 
-        const { data, status } = await axiosInstance.post("orders", order);
+        const { data, status } = await axiosInstance.get("get-net-payments/" + key);
 
         return {
             data,
             status
         }
-
     } catch (error) {
-        console.log(error.response.data)
+
         throw error;
 
     }
 
 }
+

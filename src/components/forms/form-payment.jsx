@@ -1,19 +1,15 @@
 import TextInput from "@/src/components/inputs/text-input";
-import useCommune from "@/src/hooks/useCommune";
-import useRegion from "@/src/hooks/useRegion";
-import useOrder from "@/src/hooks/useOrder";
-export default function FormPayment() {
 
-    const { communes } = useCommune();
-    const { regions } = useRegion();
 
-    const { onChangeInputText, order, submitFormOrder } = useOrder();
+export default function FormPayment({ communes, regions, onChangeInputText, order }) {
+
+
 
     return (
 
         <div className="flex flex-col gap-6 pt-12 lg:pt-1 lg:py-4 bg-white  " >
 
-            <form onSubmit={submitFormOrder} >
+            <form  >
 
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
 
@@ -91,11 +87,11 @@ export default function FormPayment() {
                     <select
                         id="regionId"
                         name="regionId"
-
                         value={order.regionId}
                         onChange={onChangeInputText}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 ">
 
+                        <option value={""} >Seleccione región</option>
                         {regions?.map(region => (
                             <option key={region.regionId} value={region.regionId} >{region.name2}</option>
                         ))}
@@ -117,6 +113,8 @@ export default function FormPayment() {
                         onChange={onChangeInputText}
                         value={order.communeId}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 ">
+
+                        <option value={""} >Seleccione comuna</option>
 
                         {communes?.filter(e => e.regionId == order.regionId).map(commune => (
                             <option key={commune.communeId} value={commune.communeId} >{commune.name}</option>

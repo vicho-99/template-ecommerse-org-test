@@ -5,6 +5,9 @@ import BagResumen from '@/app/cesta/bag-resumen'
 import Step from '@/app/cesta/step'
 import useCart from '@/src/hooks/useCart';
 import FormPayment from '@/src/components/forms/form-payment'
+import useRegion from '@/src/hooks/useRegion';
+import useCommune from '@/src/hooks/useCommune';
+import useOrder from '@/src/hooks/useOrder';
 
 export default function Page() {
 
@@ -17,6 +20,11 @@ export default function Page() {
         step,
         onChangeStep
     } = useCart();
+
+    const { communes } = useCommune();
+    const { regions } = useRegion();
+
+    const { onChangeInputText, order, submitFormOrder } = useOrder();
 
     const stepRender = () => {
 
@@ -31,7 +39,13 @@ export default function Page() {
 
             case "FORMULARIO":
                 return (
-                    <FormPayment />
+                    <FormPayment
+                        communes={communes}
+                        regions={regions}
+                        onChangeInputText={onChangeInputText}
+                        order={order}
+
+                    />
                 )
 
             default:
@@ -66,6 +80,7 @@ export default function Page() {
                         <div className=" col-span-3 lg:col-span-1    ">
 
                             <BagResumen
+                                submitFormOrder={submitFormOrder}
                                 step={step}
                                 onChangeStep={onChangeStep}
                                 totalCart={totalCart}

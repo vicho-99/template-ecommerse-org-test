@@ -9,7 +9,8 @@ export default function BagResumen({
     totalCart,
     totalWithoutDiscountCart,
     onChangeStep,
-    step
+    step,
+    submitFormOrder
 }) {
 
     const [load, setLoad] = useState();
@@ -70,7 +71,23 @@ export default function BagResumen({
 
 
                         <button
-                            onClick={() => onChangeStep('FORMULARIO')}
+                            onClick={() => {
+
+                                switch (step) {
+                                    case 'RESUMEN':
+
+                                        return onChangeStep('FORMULARIO')
+                                    case 'FORMULARIO':
+
+                                        return submitFormOrder()
+                                    default:
+                                        break;
+                                }
+
+
+                                
+
+                            }}
                             className="bg-gray-900 w-full text-white py-2 lg:pt-2.5 lg:px-2 px-1.5  text-sm lg:text-md rounded" >
 
                             {(() => {

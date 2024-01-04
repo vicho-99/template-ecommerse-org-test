@@ -27,88 +27,91 @@ export default function ProductCartList({
             {load ? (
 
                 <div className="relative overflow-x-auto">
-                    
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 " >
 
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50" >
+                    {cart.length <= 0 ? <EmplyCart /> :
 
-                            <tr>
-                                <th scope="col" className="px-4 py-2 text-xs">Detalle</th>
-                                <th scope="col" className="px-4 py-2 text-xs">Cant.</th>
-                                <th scope="col" className="px-4 py-2 text-xs">Total</th>
-                                <th scope="col" className="px-4 py-2 text-xs "></th>
-                            </tr>
+                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 " >
 
-                        </thead>
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50" >
 
-                        <tbody>
+                                <tr>
+                                    <th scope="col" className="px-4 py-2 text-xs">Detalle</th>
+                                    <th scope="col" className="px-4 py-2 text-xs">Cant.</th>
+                                    <th scope="col" className="px-4 py-2 text-xs">Total</th>
+                                    <th scope="col" className="px-4 py-2 text-xs "></th>
+                                </tr>
 
-                            {cart.length <= 0 ? <EmplyCart /> : cart?.map(c => (
+                            </thead>
 
-                                <tr key={c.ecProductId} className="bg-white border-b h-32 "  >
+                            <tbody>
 
-                                    <td>
+                                {cart?.map(c => (
 
-                                        <div className="flex flex-row gap-4 w-full " >
+                                    <tr key={c.ecProductId} className="bg-white border-b h-32 "  >
 
-                                            <picture className="p-0.5 " >
-                                                <img src={"https://smartyventa.cl/files/product/" + c.images[0]} alt="" className="lg:h-20 lg:w-32  h-6 w-10 " />
-                                            </picture>
+                                        <td>
 
-                                            <div className=" flex flex-col justify-center gap-2 w-full" >
+                                            <div className="flex flex-row gap-4 w-full " >
 
-                                                <span className="text-xs lg:text-sm text-gray-600 font-medium">{c.name}</span>
+                                                <picture className="p-0.5 " >
+                                                    <img src={"https://smartyventa.cl/files/product/" + c.images[0]} alt="" className="lg:h-20 lg:w-32  h-6 w-10 " />
+                                                </picture>
 
-                                                <div className="flex flex-row gap-2" >
+                                                <div className=" flex flex-col justify-center gap-2 w-full" >
 
-                                                    <span className="text-xs lg:text-sm font-semibold" >{toMoney(c.price?.priceNormal)}</span>
+                                                    <span className="text-xs lg:text-sm text-gray-600 font-medium">{c.name}</span>
+
+                                                    <div className="flex flex-row gap-2" >
+
+                                                        <span className="text-xs lg:text-sm font-semibold" >{toMoney(c.price?.priceNormal)}</span>
+
+                                                        {c?.price?.isOffer &&
+                                                            <span className="bg-red-500 rounded-lg text-white text-xs px-1 py-0.5 hidden lg:block ">
+                                                                {toPorcentDiscount(c?.price?.discountPercentage)}
+                                                            </span>
+                                                        }
+
+                                                    </div>
 
                                                     {c?.price?.isOffer &&
-                                                        <span className="bg-red-500 rounded-lg text-white text-xs px-1 py-0.5 hidden lg:block ">
-                                                            {toPorcentDiscount(c?.price?.discountPercentage)}
-                                                        </span>
+                                                        <p className="line-through font-normal text-xs lg:text-sm " >{toMoney(c?.price?.priceList)}</p>
                                                     }
 
                                                 </div>
 
-                                                {c?.price?.isOffer &&
-                                                    <p className="line-through font-normal text-xs lg:text-sm " >{toMoney(c?.price?.priceList)}</p>
-                                                }
+                                            </div>
+
+                                        </td>
+
+                                        <td className="px-6 py-4" >
+
+                                            <div className="flex items-center justify-center" >
+
+                                                <input
+                                                    type="number"
+                                                    value={c.qty}
+                                                    min={1}
+                                                    max={c.stock.qtyAvailable}
+                                                    onChange={(event) => updateQtyInCart(c.ecProductId, event.target.value)}
+                                                    className="border  w-10 lg:w-full rounded text-center lg:text-sm  h-8 text-xs "
+                                                />
 
                                             </div>
 
-                                        </div>
+                                        </td>
 
-                                    </td>
+                                        <td className="px-6 py-4 text-xs lg:text-sm text-center " >{toMoney(c.price?.priceNormal * c.qty)}</td>
 
-                                    <td className="px-6 py-4" >
+                                        <td>   <RemoveButton onClick={() => removeFromCart(c.ecProductId)} /></td>
 
-                                        <div className="flex items-center justify-center" >
+                                    </tr>
 
-                                            <input
-                                                type="number"
-                                                value={c.qty}
-                                                min={1}
-                                                max={c.stock.qtyAvailable}
-                                                onChange={(event) => updateQtyInCart(c.ecProductId, event.target.value)}
-                                                className="border  w-10 lg:w-full rounded text-center lg:text-sm  h-8 text-xs "
-                                            />
+                                ))}
 
-                                        </div>
+                            </tbody>
 
-                                    </td>
-
-                                    <td className="px-6 py-4 text-xs lg:text-sm text-center " >{toMoney(c.price?.priceNormal * c.qty)}</td>
-
-                                    <td>   <RemoveButton onClick={() => removeFromCart(c.ecProductId)} /></td>
-
-                                </tr>
-
-                            ))}
-
-                        </tbody>
-
-                    </table>
+                        </table>
+                    }
 
                 </div>
 

@@ -32,7 +32,6 @@ export default function FormAddToCart({ product }) {
 
             <div className="flex flex-col lg:flex-row lg:justify-between gap-6 lg:gap-2.5 py-3" >
 
-
                 <div className="flex flex-row gap-1.5  " >
 
                     <button
