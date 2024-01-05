@@ -12,6 +12,8 @@ export default async function page({ params }) {
 
     const { product, error } = await getProducts.getOne({ key: params.key })
 
+    console.log(error)
+
     if (error) return <ProductNoFound />
 
     return (
